@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/public/(.*)",
+      "destination": "http://52.66.28.192:5000/api/public/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
