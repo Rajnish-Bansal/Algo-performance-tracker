@@ -43,10 +43,7 @@ export default function LiveView() {
     if (liveData.status === 'entered') {
       return 'LIVE - IN TRADE';
     }
-    if (liveData.status === 'exited' || liveData.status === 'idle') {
-      return 'STRATEGY CLOSED';
-    }
-    return liveData.status.toUpperCase().replace(/_/g, ' ');
+    return 'STRATEGY CLOSED';
   };
 
   return (
