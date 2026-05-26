@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const formatMoney = (val) => {
-  return `${val >= 0 ? '+' : ''}₹${val.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
+  return `${val < 0 ? '-' : ''}₹${Math.abs(val).toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
 };
 
 export default function LiveView() {
@@ -39,11 +39,21 @@ export default function LiveView() {
     return <div className="loader">Waiting for data...</div>;
   }
 
+  const getStatusText = () => {
+    if (liveData.status === 'entered') {
+      return 'LIVE - IN TRADE';
+    }
+    if (liveData.status === 'exited' || liveData.status === 'idle') {
+      return 'STRATEGY CLOSED';
+    }
+    return liveData.status.toUpperCase().replace(/_/g, ' ');
+  };
+
   return (
     <div className="view-container">
       <div className="live-mtm-display">
         <div className={`status-badge ${liveData.status === 'entered' ? 'status-active' : 'status-idle'}`}>
-          {liveData.status === 'entered' ? 'LIVE - IN TRADE' : 'IDLE - NO POSITION'}
+          {getStatusText()}
         </div>
         <p style={{color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.85rem', marginBottom: '10px'}}>Current MTM</p>
         <h2 className={liveData.mtm >= 0 ? 'profit' : 'loss'}>
@@ -53,11 +63,11 @@ export default function LiveView() {
       
       <div className="stats-row">
         <div className="stat-box">
-          <p>Max Profit Seen</p>
+          <p>Max Profit</p>
           <h3 className="text-profit">{formatMoney(liveData.max_mtm)}</h3>
         </div>
         <div className="stat-box">
-          <p>Max Loss Seen</p>
+          <p>Max Loss</p>
           <h3 className="text-loss">{formatMoney(liveData.min_mtm)}</h3>
         </div>
       </div>

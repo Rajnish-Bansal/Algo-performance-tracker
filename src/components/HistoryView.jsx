@@ -197,8 +197,8 @@ export default function HistoryView() {
                   <h3>{dObj.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' })}</h3>
                 </div>
                 <div className="calendar-grid">
-                  {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(day => (
-                    <div key={day} className="calendar-day-header">{day}</div>
+                  {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, i) => (
+                    <div key={i} className="calendar-day-header">{day}</div>
                   ))}
                   {cells}
                 </div>
