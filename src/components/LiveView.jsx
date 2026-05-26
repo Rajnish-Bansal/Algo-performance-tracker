@@ -41,7 +41,8 @@ export default function LiveView() {
 
   const isActive = () => {
     const status = (liveData.status || '').toLowerCase();
-    return ['entered', 'active', 'running', 'live'].includes(status);
+    const closedStatuses = ['exited', 'target_reached', 'stop_loss', 'end_of_day', 'square_off'];
+    return !closedStatuses.includes(status);
   };
 
   const getStatusText = () => {
