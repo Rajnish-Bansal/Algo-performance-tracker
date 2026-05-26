@@ -39,17 +39,19 @@ export default function LiveView() {
     return <div className="loader">Waiting for data...</div>;
   }
 
+  const isActive = () => {
+    const status = (liveData.status || '').toLowerCase();
+    return ['entered', 'active', 'running', 'live'].includes(status);
+  };
+
   const getStatusText = () => {
-    if (liveData.status === 'entered') {
-      return 'LIVE - IN TRADE';
-    }
-    return 'STRATEGY CLOSED';
+    return isActive() ? 'LIVE - IN TRADE' : 'STRATEGY CLOSED';
   };
 
   return (
     <div className="view-container">
       <div className="live-mtm-display">
-        <div className={`status-badge ${liveData.status === 'entered' ? 'status-active' : 'status-idle'}`}>
+        <div className={`status-badge ${isActive() ? 'status-active' : 'status-idle'}`}>
           {getStatusText()}
         </div>
         <p style={{color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.85rem', marginBottom: '10px'}}>Current MTM</p>
