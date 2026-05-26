@@ -139,7 +139,9 @@ h1, h2, h3, h4 {
   text-shadow: 0 0 40px rgba(239, 68, 68, 0.3);
 }
 .status-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 6px 16px;
   border-radius: 20px;
   font-size: 0.85rem;
@@ -147,6 +149,30 @@ h1, h2, h3, h4 {
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 20px;
+}
+
+.blinker {
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-green);
+  border-radius: 50%;
+  animation: blink-pulse 1.4s infinite ease-in-out;
+}
+
+@keyframes blink-pulse {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
 }
 .status-active {
   background: rgba(16, 185, 129, 0.15);
