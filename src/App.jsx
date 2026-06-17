@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import LiveView from './components/LiveView';
 import HistoryView from './components/HistoryView';
 
@@ -39,6 +40,7 @@ function App() {
           </Routes>
         </div>
       </main>
+      <Analytics />
     </>
   );
 }
