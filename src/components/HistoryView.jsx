@@ -219,7 +219,6 @@ export default function HistoryView() {
             <tr>
               <th style={{width: '50px'}}>Sl No</th>
               <th>Date</th>
-              <th>Status</th>
               <th>Min MTM</th>
               <th>Max MTM</th>
               <th>Total P&L</th>
@@ -230,7 +229,6 @@ export default function HistoryView() {
               <tr key={idx}>
                 <td style={{color: 'var(--text-secondary)'}}>{idx + 1}</td>
                 <td>{new Date(trade.date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}</td>
-                <td><span className="table-status">{trade.status.replace(/_/g, ' ')}</span></td>
                 <td className="text-loss">{Number(trade.min_mtm).toFixed(2)}</td>
                 <td className="text-profit">{Number(trade.max_mtm).toFixed(2)}</td>
                 <td>

@@ -9,7 +9,7 @@ function App() {
       <header className="app-header">
         <div className="header-content">
           <div>
-            <h1 style={{margin: 0, fontSize: '1.8rem', letterSpacing: '1px'}}>NIFTY ACE</h1>
+            <h1 style={{margin: 0, fontSize: '1.8rem', letterSpacing: '1px'}}>NIFTY DYNAMIC</h1>
             <p style={{margin: '5px 0 0 0', color: 'var(--text-secondary)', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px'}}>Live Performance Tracker</p>
           </div>
 
