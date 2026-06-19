@@ -67,11 +67,11 @@ export default function LiveView() {
       
       <div className="stats-row">
         <div className="stat-box">
-          <p>Max Profit</p>
+          <p>Highest MTM (Today)</p>
           <h3 className="text-profit">{formatMoney(liveData.max_mtm)}</h3>
         </div>
         <div className="stat-box">
-          <p>Max Loss</p>
+          <p>Lowest MTM (Today)</p>
           <h3 className="text-loss">{formatMoney(liveData.min_mtm)}</h3>
         </div>
       </div>
