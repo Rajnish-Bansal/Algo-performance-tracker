@@ -63,6 +63,9 @@ export default function LiveView() {
         <h2 className={liveData.mtm >= 0 ? 'profit' : 'loss'}>
           {formatMoney(liveData.mtm)}
         </h2>
+        <p style={{color: 'var(--text-secondary)', fontSize: '0.75rem', marginTop: '5px', opacity: 0.7}}>
+          * P&L is exclusive of all charges
+        </p>
       </div>
       
       <div className="stats-row">

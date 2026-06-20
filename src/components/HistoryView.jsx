@@ -97,6 +97,9 @@ export default function HistoryView() {
 
   return (
     <div className="view-container">
+      <div style={{display: 'flex', justifyContent: 'flex-end', paddingBottom: '10px'}}>
+        <span style={{color: 'var(--text-secondary)', fontSize: '0.75rem', opacity: 0.8}}>* P&L is exclusive of all charges</span>
+      </div>
       {/* 1. Month Navigation Grid */}
       <div className="months-grid">
         <div className="month-box" style={{cursor: 'default', background: 'rgba(0, 0, 0, 0.04)', padding: '12px 2px'}}>
