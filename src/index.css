@@ -226,7 +226,7 @@ body {
 @media (max-width: 992px) {
   .main-content {
     margin-top: 130px; /* Clears the taller stacked header */
-    padding: 24px 12px; /* Reduce horizontal padding to maximize space on mobile */
+    padding: 24px 12px 140px 12px; /* 140px bottom padding clears the sticky footer completely */
   }
 }
 
@@ -776,7 +776,7 @@ h1, h2, h3, h4 {
 
 @media (max-width: 768px) {
   .main-content {
-    padding: 20px 10px;
+    padding: 20px 10px 90px 10px; /* 90px bottom padding is just enough to clear the 68px sticky footer comfortably */
   }
   
   .glass-panel {
@@ -1130,6 +1130,7 @@ h1, h2, h3, h4 {
   }
   .analytics-header-right {
     align-items: center;
+    width: 100%;
   }
   .analytics-title {
     font-size: 1.3rem;
@@ -1144,10 +1145,12 @@ h1, h2, h3, h4 {
   .analytics-filters {
     justify-content: center;
     width: 100%;
+    flex-direction: column;
   }
   .filter-pills {
     justify-content: center;
     flex-wrap: wrap;
+    width: 100%;
   }
   .filter-pill {
     padding: 6px 12px;
@@ -1156,12 +1159,14 @@ h1, h2, h3, h4 {
   .custom-date-pickers {
     width: 100%;
     justify-content: center;
+    box-sizing: border-box;
   }
   .filter-date {
-    flex: 1;
+    width: 100%;
     min-width: 0;
     font-size: 0.75rem;
     padding: 6px 8px;
+    box-sizing: border-box;
   }
 }
 
