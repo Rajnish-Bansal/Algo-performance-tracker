@@ -50,16 +50,16 @@ export default function LiveView() {
   };
 
   return (
-    <div className="view-container">
+    <div className="view-container live-centered">
       <div className="live-mtm-display">
         <div className={`status-badge ${isActive() ? 'status-active' : 'status-idle'}`}>
           {isActive() && <span className="blinker"></span>}
           {getStatusText()}
         </div>
-        <p style={{color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '15px', fontWeight: '500'}}>
-          {new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}
+        <p style={{color: 'var(--text-secondary)', fontSize: '1rem', marginBottom: '20px', fontWeight: '600'}}>
+          {new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' })}
         </p>
-        <p style={{color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.85rem', marginBottom: '10px'}}>Current MTM</p>
+        <p style={{color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.85rem', fontWeight: '700', marginBottom: '5px'}}>Current MTM</p>
         <h2 className={liveData.mtm >= 0 ? 'profit' : 'loss'}>
           {formatMoney(liveData.mtm)}
         </h2>

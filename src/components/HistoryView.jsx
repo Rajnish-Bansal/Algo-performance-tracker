@@ -102,7 +102,7 @@ export default function HistoryView() {
       </div>
       {/* 1. Month Navigation Grid */}
       <div className="months-grid">
-        <div className="month-box" style={{cursor: 'default', background: 'rgba(0, 0, 0, 0.04)', padding: '12px 2px'}}>
+        <div className="month-box" style={{cursor: 'default', background: 'var(--bg-app)', padding: '12px 2px', boxShadow: 'none'}}>
           <h4 style={{color: 'var(--text-primary)', marginBottom: '6px'}}>YEAR</h4>
           <select 
             value={currentYear}
@@ -139,7 +139,7 @@ export default function HistoryView() {
             </div>
         ))}
 
-        <div className="month-box" style={{cursor: 'default', background: 'rgba(0, 0, 0, 0.04)'}}>
+        <div className="month-box" style={{cursor: 'default', background: 'var(--bg-app)', boxShadow: 'none'}}>
           <h4 style={{color: 'var(--text-primary)'}}>TOTAL</h4>
           <p className={monthStats.reduce((sum, s) => sum + s.pnl, 0) > 0 ? 'text-profit' : (monthStats.reduce((sum, s) => sum + s.pnl, 0) < 0 ? 'text-loss' : '')} style={{color: monthStats.reduce((sum, s) => sum + s.pnl, 0) === 0 ? 'var(--text-secondary)' : undefined}}>
             {monthStats.reduce((sum, s) => sum + s.pnl, 0) === 0 ? '-' : formatMoney(monthStats.reduce((sum, s) => sum + s.pnl, 0))}
