@@ -219,14 +219,20 @@ export default function StatsView() {
             {dateFilter === 'CUSTOM' && (
               <div className="custom-date-pickers">
                 <input 
-                  type="date" 
+                  type={customStart ? "date" : "text"}
+                  placeholder="Start Date"
+                  onFocus={(e) => e.target.type = 'date'}
+                  onBlur={(e) => { if (!e.target.value) e.target.type = 'text'; }}
                   className="filter-date" 
                   value={customStart} 
                   onChange={e => setCustomStart(e.target.value)} 
                 />
                 <span className="filter-to">to</span>
                 <input 
-                  type="date" 
+                  type={customEnd ? "date" : "text"}
+                  placeholder="End Date"
+                  onFocus={(e) => e.target.type = 'date'}
+                  onBlur={(e) => { if (!e.target.value) e.target.type = 'text'; }}
                   className="filter-date" 
                   value={customEnd} 
                   onChange={e => setCustomEnd(e.target.value)} 
