@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from 'react';
 
 const formatMoney = (val) => {
-  return `${val >= 0 ? '+' : ''}₹${val.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
+  const sign = val >= 0 ? '+' : '-';
+  return `${sign}₹${Math.abs(val).toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
 };
 
 export default function HistoryView() {
   const [historyData, setHistoryData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [showYearDropdown, setShowYearDropdown] = useState(false);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest('.custom-year-dropdown')) {
+        setShowYearDropdown(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Fetch History once on mount
   useEffect(() => {
@@ -104,28 +117,66 @@ export default function HistoryView() {
       </div>
       {/* 1. Month Navigation Grid */}
       <div className="months-grid">
-        <div className="month-box" style={{cursor: 'default', background: 'var(--bg-app)', padding: '12px 2px', boxShadow: 'none'}}>
-          <h4 style={{color: 'var(--text-primary)', marginBottom: '6px'}}>YEAR</h4>
-          <select 
-            value={currentYear}
-            onChange={(e) => setCurrentDate(new Date(parseInt(e.target.value), currentDate.getMonth(), 1))}
-            style={{
-              background: 'transparent',
-              color: 'var(--text-primary)',
-              border: 'none',
-              borderRadius: '4px',
-              padding: '2px 4px',
-              fontSize: '0.95rem',
-              fontWeight: '700',
-              cursor: 'pointer',
-              outline: 'none',
-              textAlign: 'center'
-            }}
-          >
-            {availableYears.map(year => (
-              <option key={year} value={year} style={{color: 'black'}}>{year}</option>
-            ))}
-          </select>
+        <div className="month-box custom-year-dropdown" style={{cursor: 'pointer', background: 'var(--bg-app)', padding: '12px 2px', boxShadow: 'none', position: 'relative'}} onClick={() => setShowYearDropdown(!showYearDropdown)}>
+          <h4 style={{color: 'var(--text-primary)', marginBottom: '6px', pointerEvents: 'none'}}>YEAR</h4>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '6px',
+            color: 'var(--text-primary)',
+            fontSize: '1rem',
+            fontWeight: '800',
+            pointerEvents: 'none'
+          }}>
+            {currentYear}
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ transform: showYearDropdown ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s' }}>
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+          
+          {showYearDropdown && (
+            <div style={{
+              position: 'absolute',
+              top: '100%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              marginTop: '4px',
+              background: 'rgba(255, 255, 255, 0.95)',
+              backdropFilter: 'blur(12px)',
+              border: '1px solid var(--border-card)',
+              borderRadius: '12px',
+              padding: '8px 0',
+              boxShadow: 'var(--shadow-lg)',
+              zIndex: 50,
+              minWidth: '100px',
+              animation: 'fadeIn 0.2s ease-out'
+            }}>
+              {availableYears.map(year => (
+                <div 
+                  key={year}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentDate(new Date(parseInt(year), currentDate.getMonth(), 1));
+                    setShowYearDropdown(false);
+                  }}
+                  style={{
+                    padding: '10px 16px',
+                    fontSize: '0.95rem',
+                    fontWeight: year === currentYear ? '800' : '600',
+                    color: year === currentYear ? 'var(--accent-blue)' : 'var(--text-primary)',
+                    background: year === currentYear ? 'rgba(37, 99, 235, 0.08)' : 'transparent',
+                    cursor: 'pointer',
+                    transition: 'background 0.2s'
+                  }}
+                  onMouseOver={(e) => { if (year !== currentYear) e.currentTarget.style.background = 'rgba(0,0,0,0.03)' }}
+                  onMouseOut={(e) => { if (year !== currentYear) e.currentTarget.style.background = 'transparent' }}
+                >
+                  {year}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {monthStats.map((stat, idx) => (

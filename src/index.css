@@ -824,7 +824,22 @@ h1, h2, h3, h4 {
 
 @media (max-width: 576px) {
   .months-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+  }
+  
+  .months-grid .month-box {
+    grid-column: span 2;
+    order: 3;
+  }
+  
+  .months-grid .month-box:nth-child(1) {
+    grid-column: span 3;
+    order: 1;
+  }
+  
+  .months-grid .month-box:nth-child(14) {
+    grid-column: span 3;
+    order: 2;
   }
 
   .history-table th:nth-child(1),
