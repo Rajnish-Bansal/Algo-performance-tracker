@@ -98,7 +98,9 @@ export default function HistoryView() {
   return (
     <div className="view-container">
       <div style={{display: 'flex', justifyContent: 'flex-end', paddingBottom: '10px'}}>
-        <span style={{color: 'var(--text-secondary)', fontSize: '0.75rem', opacity: 0.8}}>* P&L is exclusive of all charges</span>
+        <div className="global-disclaimer" style={{ marginBottom: 0, padding: '4px 10px', fontSize: '0.75rem' }}>
+          * P&L is exclusive of all charges
+        </div>
       </div>
       {/* 1. Month Navigation Grid */}
       <div className="months-grid">

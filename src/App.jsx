@@ -3,6 +3,7 @@ import { Routes, Route, NavLink, Navigate } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import LiveView from './components/LiveView';
 import HistoryView from './components/HistoryView';
+import StatsView from './components/StatsView';
 
 const TelegramIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -20,7 +21,7 @@ function App() {
             <p className="header-subtitle">Live Performance Tracker</p>
           </div>
 
-          <div className="tabs" style={{margin: 0, width: '400px'}}>
+          <div className="tabs">
             <NavLink 
               to="/live" 
               className={({ isActive }) => `tab-btn ${isActive ? 'active' : ''}`}
@@ -31,7 +32,13 @@ function App() {
               to="/history" 
               className={({ isActive }) => `tab-btn ${isActive ? 'active' : ''}`}
             >
-              Historical Records
+              Past Performance
+            </NavLink>
+            <NavLink 
+              to="/analytics" 
+              className={({ isActive }) => `tab-btn ${isActive ? 'active' : ''}`}
+            >
+              Analytics
             </NavLink>
           </div>
 
@@ -50,6 +57,7 @@ function App() {
           <Routes>
             <Route path="/live" element={<LiveView />} />
             <Route path="/history" element={<HistoryView />} />
+            <Route path="/analytics" element={<StatsView />} />
             <Route path="/" element={<Navigate to="/live" replace />} />
           </Routes>
         </div>

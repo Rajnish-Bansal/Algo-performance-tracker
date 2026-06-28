@@ -50,22 +50,27 @@ export default function LiveView() {
   };
 
   return (
-    <div className="view-container live-centered">
+    <div className="view-container live-centered" style={{ position: 'relative', width: '100%' }}>
+      <div className="live-top-bar">
+        <h1 className="live-title">
+          NIFTY 50 <span style={{ opacity: 0.3, margin: '0 8px' }}>·</span> CAPITAL: ₹2,00,000
+        </h1>
+        <div className="global-disclaimer" style={{ margin: 0, padding: '4px 10px', fontSize: '0.75rem' }}>
+          * P&L is exclusive of all charges
+        </div>
+      </div>
       <div className="live-mtm-display">
         <div className={`status-badge ${isActive() ? 'status-active' : 'status-idle'}`}>
           {isActive() && <span className="blinker"></span>}
           {getStatusText()}
         </div>
-        <p style={{color: 'var(--text-secondary)', fontSize: '1rem', marginBottom: '20px', fontWeight: '600'}}>
+        <p style={{color: 'var(--text-tertiary)', fontSize: '1rem', marginBottom: '32px', marginTop: '16px', fontWeight: '600'}}>
           {new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' })}
         </p>
         <p style={{color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.85rem', fontWeight: '700', marginBottom: '5px'}}>Current MTM</p>
         <h2 className={liveData.mtm >= 0 ? 'profit' : 'loss'}>
           {formatMoney(liveData.mtm)}
         </h2>
-        <p style={{color: 'var(--text-secondary)', fontSize: '0.75rem', marginTop: '5px', opacity: 0.7}}>
-          * P&L is exclusive of all charges
-        </p>
       </div>
       
       <div className="stats-row">
