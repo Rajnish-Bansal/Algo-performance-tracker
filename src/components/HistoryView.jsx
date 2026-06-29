@@ -110,7 +110,10 @@ export default function HistoryView() {
 
   return (
     <div className="view-container">
-      <div style={{display: 'flex', justifyContent: 'flex-end', paddingBottom: '10px'}}>
+      <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '10px'}}>
+        <div style={{ fontWeight: '600', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+          Performance on Capital: ₹2,00,000
+        </div>
         <div className="global-disclaimer" style={{ marginBottom: 0, padding: '4px 10px', fontSize: '0.75rem' }}>
           * P&L is exclusive of all charges
         </div>
